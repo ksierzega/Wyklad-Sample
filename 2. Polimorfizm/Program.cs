@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Samples
+namespace Polimorfizm
 {
     class Program
     {

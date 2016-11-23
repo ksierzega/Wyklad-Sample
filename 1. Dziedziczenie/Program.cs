@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polimorfizm
+namespace Dziedziczenie
 {
     class Program
     {
