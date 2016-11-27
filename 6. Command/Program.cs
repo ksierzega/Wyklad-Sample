@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _6.Command
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            CommandBus bus = new CommandBus();
+
+            ICommand cmd = new ChangeUserPassowrdCmd(1, "qwert1234", "QWERTY1234");
+
+            bus.Send(cmd);
+
+            cmd = new AddUserCommnad("jan", "kowalski");
+
+            bus.Send(cmd);
+        }
+    }
+
+    public interface ICommand
+    {
+        void Execute();
+    }
+
+    class ChangeUserPassowrdCmd : ICommand
+    {
+        private readonly int _userId;
+        private readonly string _oldPassword;
+        private readonly string _newPassword;
+
+        public ChangeUserPassowrdCmd(int userId, string oldPassword, string newPassword)
+        {
+            _userId = userId;
+            _oldPassword = oldPassword;
+            _newPassword = newPassword;
+        }
+
+        public void Execute()
+        {
+            Console.WriteLine(string.Format("Zmieniam hasło użytkownika o Id: {0} z {1} na {2}", _userId, _oldPassword, _newPassword));
+        }
+    }
+
+
+    class AddUserCommnad : ICommand
+    {
+        private readonly string _firstName;
+        private readonly string _lastName;
+
+        public AddUserCommnad(string firstName, string lastName)
+        {
+            _firstName = firstName;
+            _lastName = lastName;
+        }
+
+        public void Execute()
+        {
+            Console.WriteLine("Tworzenie użytkownika: {0} {1}", _firstName, _lastName);
+        }
+    }
+
+
+    class CommandBus 
+    {
+        public void Send(ICommand cmd)
+        {
+            //wykonuj za pomocą kolejki czy współbierznei 
+            cmd.Execute();
+        }
+    }
+}
