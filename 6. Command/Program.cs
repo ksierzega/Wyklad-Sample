@@ -10,6 +10,25 @@ namespace _6.Command
     {
         static void Main(string[] args)
         {
+            ButtonSample();
+            CommandBusSample();
+        }
+
+        private static void ButtonSample()
+        {
+            ICommand cmd = new ChangeUserPassowrdCmd(1, "zxc", "asd");
+            Button btn = new Button(cmd);
+
+            btn.Click();
+
+            ICommand cmd2 = new AddUserCommnad("jan", "kowalski");
+            btn.SetClickCommnad(cmd2);
+
+            btn.Click();
+        }
+
+        private static void CommandBusSample()
+        {
             CommandBus bus = new CommandBus();
 
             ICommand cmd = new ChangeUserPassowrdCmd(1, "qwert1234", "QWERTY1234");
@@ -65,12 +84,35 @@ namespace _6.Command
     }
 
 
-    class CommandBus 
+
+    class Button
+    {
+        private ICommand _clickCmd;
+
+        public Button(ICommand clickCmd)
+        {
+            _clickCmd = clickCmd;
+        }
+
+        public void Click()
+        {
+            _clickCmd.Execute();
+        }
+
+        internal void SetClickCommnad(ICommand clickCmd)
+        {
+            _clickCmd = clickCmd;
+        }
+    }
+
+
+
+    class CommandBus
     {
         public void Send(ICommand cmd)
         {
             //wykonuj za pomocą kolejki czy współbierznei 
             cmd.Execute();
         }
-    }
+    }  
 }
