@@ -15,8 +15,8 @@ namespace _4.Dekorator
 
             Console.WriteLine();
 
-            ICommand withTransaction = new WithTransaction(cmd);
-            ICommand withLoggingAndTransaction = new WithLogging(withTransaction);
+            ICommand withTransaction = new TransactionDecorator(cmd);
+            ICommand withLoggingAndTransaction = new LoggingDecorator(withTransaction);
 
             withLoggingAndTransaction.Execute();
         }
@@ -64,9 +64,9 @@ namespace _4.Dekorator
         }
     }
 
-    class WithLogging : CommandDecorator
+    class LoggingDecorator : CommandDecorator
     {
-        public WithLogging(ICommand cmd) : base(cmd)
+        public LoggingDecorator(ICommand cmd) : base(cmd)
         {
 
         }
@@ -79,9 +79,9 @@ namespace _4.Dekorator
         }
     }
 
-    class WithTransaction : CommandDecorator
+    class TransactionDecorator : CommandDecorator
     {
-        public WithTransaction(ICommand cmd) : base(cmd)
+        public TransactionDecorator(ICommand cmd) : base(cmd)
         {
 
         }

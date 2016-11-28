@@ -45,7 +45,7 @@ namespace _5.Metoda_wytwórcza
         public ICommand CreateCommand(ICommand cmd)
         {
             ICommand withTransaction = new WithTransaction(cmd);
-            ICommand withLoggingAndTransaction = new WithLogging(withTransaction);
+            ICommand withLoggingAndTransaction = new LoggingDecorator(withTransaction);
             return withLoggingAndTransaction;
         }
     }
@@ -94,9 +94,9 @@ namespace _5.Metoda_wytwórcza
         }
     }
 
-    class WithLogging : CommandDecorator
+    class LoggingDecorator : CommandDecorator
     {
-        public WithLogging(ICommand cmd) : base(cmd)
+        public LoggingDecorator(ICommand cmd) : base(cmd)
         {
 
         }
