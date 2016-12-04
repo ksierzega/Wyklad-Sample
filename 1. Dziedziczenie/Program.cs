@@ -15,7 +15,7 @@ namespace Dziedziczenie
 
             jakiesZwierze = reksio;
             jakiesZwierze.Biegaj(); // patataj
-                                    // jakiesZwierze.Szczekaj(); - błąd kompilacji
+            //jakiesZwierze.Szczekaj(); - błąd kompilacji
 
         }
     }
