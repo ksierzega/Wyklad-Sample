@@ -16,7 +16,7 @@ namespace _6.Command
 
         private static void ButtonSample()
         {
-            ICommand cmd = new ChangeUserPassowrdCmd(1, "zxc", "asd");
+            ICommand cmd = new ChangeUserPasswordCmd(1, "zxc", "asd");
             Button btn = new Button(cmd);
 
             btn.Click();
@@ -31,7 +31,7 @@ namespace _6.Command
         {
             CommandBus bus = new CommandBus();
 
-            ICommand cmd = new ChangeUserPassowrdCmd(1, "qwert1234", "QWERTY1234");
+            ICommand cmd = new ChangeUserPasswordCmd(1, "qwert1234", "QWERTY1234");
 
             bus.Send(cmd);
 
@@ -46,13 +46,13 @@ namespace _6.Command
         void Execute();
     }
 
-    class ChangeUserPassowrdCmd : ICommand
+    class ChangeUserPasswordCmd : ICommand
     {
         private readonly int _userId;
         private readonly string _oldPassword;
         private readonly string _newPassword;
 
-        public ChangeUserPassowrdCmd(int userId, string oldPassword, string newPassword)
+        public ChangeUserPasswordCmd(int userId, string oldPassword, string newPassword)
         {
             _userId = userId;
             _oldPassword = oldPassword;
@@ -111,7 +111,7 @@ namespace _6.Command
     {
         public void Send(ICommand cmd)
         {
-            //wykonuj za pomocą kolejki czy współbierznei 
+            //wykonuj za pomocą kolejki czy współbieżnie
             cmd.Execute();
         }
     }  

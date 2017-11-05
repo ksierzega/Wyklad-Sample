@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace _4.Dekorator
     {
         static void Main(string[] args)
         {
-            ChangeUserPassowrdCmd cmd = new ChangeUserPassowrdCmd(2, "qwerty123", "QWERTY1234");
+            ChangeUserPasswordCmd cmd = new ChangeUserPasswordCmd(2, "qwerty123", "QWERTY1234");
             cmd.Execute();
 
             Console.WriteLine();
@@ -27,13 +28,13 @@ namespace _4.Dekorator
         void Execute();
     }
 
-    class ChangeUserPassowrdCmd : ICommand
+    class ChangeUserPasswordCmd : ICommand
     {
         private readonly int _userId;
         private readonly string _oldPassword;
         private readonly string _newPassword;
 
-        public ChangeUserPassowrdCmd(int userId, string oldPassword, string newPassword)
+        public ChangeUserPasswordCmd(int userId, string oldPassword, string newPassword)
         {
             _userId = userId;
             _oldPassword = oldPassword;
@@ -73,9 +74,11 @@ namespace _4.Dekorator
 
         public override void Execute()
         {
-            Console.WriteLine("Przed wywoałeniem execute");
+            var sw = Stopwatch.StartNew();
+            Console.WriteLine(string.Format("{0}: {1}", DateTime.Now, "Przed wywoałeniem execute"));
             base.Execute();
-            Console.WriteLine("Po wywołaniu execute");
+            sw.Stop();
+            Console.WriteLine("{0}: {1}", DateTime.Now, "Po wywołaniu execute, czas trwania (ticks): " + sw.ElapsedTicks);
         }
     }
 

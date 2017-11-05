@@ -10,7 +10,7 @@ namespace _5.Metoda_wytwórcza
     {
         static void Main(string[] args)
         {
-            ICommand cmd = new ChangeUserPassowrdCmd(2, "qwerty123", "QWERTY1234");
+            ICommand cmd = new ChangeUserPasswordCmd(2, "qwerty123", "QWERTY1234");
 
             ICommandFactory factory = new StandardCommandFactory();
 
@@ -57,13 +57,13 @@ namespace _5.Metoda_wytwórcza
         void Execute();
     }
 
-    class ChangeUserPassowrdCmd : ICommand
+    class ChangeUserPasswordCmd : ICommand
     {
         private readonly int _userId;
         private readonly string _oldPassword;
         private readonly string _newPassword;
 
-        public ChangeUserPassowrdCmd(int userId, string oldPassword, string newPassword)
+        public ChangeUserPasswordCmd(int userId, string oldPassword, string newPassword)
         {
             _userId = userId;
             _oldPassword = oldPassword;
