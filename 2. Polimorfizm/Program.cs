@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Polimorfizm
 {
@@ -18,14 +19,29 @@ namespace Polimorfizm
 
             ssak = tuptuś;
             ssak.Biegaj(); // kic kic
+
+            Console.WriteLine();
+
+            List<Ssak> ssaki = new List<Ssak>();
+            ssaki.Add(tuptuś);
+            ssaki.Add(reksio);
+            ssaki.Add(new Kot());
+            
+            foreach (Ssak x in ssaki)
+            {
+                x.Biegaj();
+                x.DajGłos();
+            }
+
+            Console.ReadLine();
         }
     }
 
     abstract class Ssak
     {
-        public abstract void DajGłos();
+        public abstract void DajGłos() ;
 
-        public virtual void Biegaj()
+        public virtual void Biegaj() 
         {
             Console.WriteLine("patataj");
         }

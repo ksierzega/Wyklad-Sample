@@ -42,7 +42,7 @@ namespace _4.Dekorator
         }
 
         public void Execute()
-        {
+        {   
             Console.WriteLine(string.Format("Zmieniam hasło użytkownika o Id: {0} z {1} na {2}", _userId, _oldPassword, _newPassword));
         }
     }
@@ -76,7 +76,9 @@ namespace _4.Dekorator
         {
             var sw = Stopwatch.StartNew();
             Console.WriteLine(string.Format("{0}: {1}", DateTime.Now, "Przed wywoałeniem execute"));
+
             base.Execute();
+
             sw.Stop();
             Console.WriteLine("{0}: {1}", DateTime.Now, "Po wywołaniu execute, czas trwania (ticks): " + sw.ElapsedTicks);
         }
