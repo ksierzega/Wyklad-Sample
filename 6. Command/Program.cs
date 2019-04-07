@@ -46,7 +46,8 @@ namespace _6.Command
         void Execute();
     }
 
-    class ChangeUserPasswordCmd : ICommand
+    //Concrete command
+    class ChangeUserPasswordCmd : ICommand 
     {
         private readonly int _userId;
         private readonly string _oldPassword;
@@ -61,11 +62,12 @@ namespace _6.Command
 
         public void Execute()
         {
+            //Receiver
             Console.WriteLine(string.Format("Zmieniam hasło użytkownika o Id: {0} z {1} na {2}", _userId, _oldPassword, _newPassword));
         }
     }
 
-
+    //Concrete command
     class AddUserCommnad : ICommand
     {
         private readonly string _firstName;
@@ -79,12 +81,13 @@ namespace _6.Command
 
         public void Execute()
         {
+            //Receiver
             Console.WriteLine("Tworzenie użytkownika: {0} {1}", _firstName, _lastName);
         }
     }
 
 
-
+    //Invoker
     class Button
     {
         private ICommand _clickCmd;

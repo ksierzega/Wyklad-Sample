@@ -10,40 +10,41 @@ namespace _5.Metoda_wytwórcza
     {
         static void Main(string[] args)
         {
-            ICommand cmd = new ChangeUserPasswordCmd(2, "qwerty123", "QWERTY1234");
-
             ICommandFactory factory = new StandardCommandFactory();
-
-            
-            cmd = factory.CreateCommand(cmd);
+                        
+            ICommand cmd = factory.CreateChangeUserPasswordCmd(2, "stare hasło", "nowe hasło");
             cmd.Execute();
 
             Console.WriteLine();
 
             factory = new AdvancedCommandFactory();
-            cmd = factory.CreateCommand(cmd);
+            cmd = factory.CreateChangeUserPasswordCmd(2, "stare hasło", "nowe hasło");
 
             cmd.Execute();
         }
     }
 
+    //Creator
     interface ICommandFactory
     {
-        ICommand CreateCommand(ICommand cmd);
+        ICommand CreateChangeUserPasswordCmd(int userId, string oldPassword, string newPassword);
     }
 
+    //Concrete Creator
     class StandardCommandFactory : ICommandFactory
     {
-        public ICommand CreateCommand(ICommand cmd)
+        public ICommand CreateChangeUserPasswordCmd(int userId, string oldPassword, string newPassword)
         {
-            return cmd;
+            return new ChangeUserPasswordCmd(userId, oldPassword, newPassword);
         }
     }
 
+    //Concrete Creator
     class AdvancedCommandFactory : ICommandFactory
     {
-        public ICommand CreateCommand(ICommand cmd)
+        public ICommand CreateChangeUserPasswordCmd(int userId, string oldPassword, string newPassword)
         {
+            ICommand cmd = new ChangeUserPasswordCmd(userId, oldPassword, newPassword);
             ICommand withTransaction = new WithTransaction(cmd);
             ICommand withLoggingAndTransaction = new LoggingDecorator(withTransaction);
             return withLoggingAndTransaction;
@@ -51,12 +52,14 @@ namespace _5.Metoda_wytwórcza
     }
 
 
-
+    //Product
     public interface ICommand
     {
         void Execute();
     }
 
+
+    //Concrete Product
     class ChangeUserPasswordCmd : ICommand
     {
         private readonly int _userId;

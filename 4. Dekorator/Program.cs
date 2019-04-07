@@ -23,11 +23,13 @@ namespace _4.Dekorator
             }
     }
 
+    //Component
     public interface ICommand
     {
         void Execute();
     }
 
+    //Concrete Component
     class ChangeUserPasswordCmd : ICommand
     {
         private readonly int _userId;
@@ -49,7 +51,7 @@ namespace _4.Dekorator
 
     //itp np AddUserCommand
 
-
+    //Decorator
     abstract class CommandDecorator : ICommand
     {
         protected readonly ICommand _decoratedCmd;
@@ -65,6 +67,7 @@ namespace _4.Dekorator
         }
     }
 
+    //Concrete Decorator
     class LoggingDecorator : CommandDecorator
     {
         public LoggingDecorator(ICommand cmd) : base(cmd)
