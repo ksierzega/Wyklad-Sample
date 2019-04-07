@@ -12,6 +12,9 @@ namespace Interfejsy
 
             IMogęLatać ktośKtoMożeLatać = ćwirek;
             ktośKtoMożeLatać.Lataj();
+
+            IMogęBiegać ktośKtoMożeBiegać = ćwirek;
+            ktośKtoMożeBiegać.Biegaj();
         }
     }
 

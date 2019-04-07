@@ -20,7 +20,7 @@ namespace _4.Dekorator
             ICommand withLoggingAndTransaction = new LoggingDecorator(withTransaction);
 
             withLoggingAndTransaction.Execute();
-        }
+            }
     }
 
     public interface ICommand

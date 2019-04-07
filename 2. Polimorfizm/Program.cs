@@ -34,6 +34,7 @@ namespace Polimorfizm
             }
 
             Console.ReadLine();
+            
         }
     }
 

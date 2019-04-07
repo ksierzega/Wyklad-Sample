@@ -9,6 +9,7 @@ namespace Dziedziczenie
             Zwierze jakiesZwierze = new Zwierze();
             jakiesZwierze.Biegaj(); // patataj
             
+            
             Pies reksio = new Pies();
             reksio.Biegaj(); // patataj
             reksio.Szczekaj(); // hau hau
